@@ -1,2 +1,2 @@
 # dlanger1-langer.github.io
-CIS300 Summer 2026
+This repository contains files for CIS300 Project Assignments.
