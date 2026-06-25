@@ -36,7 +36,7 @@ nav a:hover     { color: var(--primary); }
 a               { text-decoration: none; }
 body            { font-family: 'Montserrat', sans-serif; 
                   background: var(--background);
-                  background-image: url(Home-Images/Main-BG.jpg);
+                  background-image: url(/Home-Images/Main-BG.jpg);
                   background-size: cover;
                   background-repeat: no-repeat;
                   background-attachment: fixed; }
