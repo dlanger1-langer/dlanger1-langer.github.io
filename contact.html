@@ -6,7 +6,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="stylesheet.css">
-        <link rel="icon" href="/Home-Images/langermediafavicon.png" type="image/ico">
+        <link rel="icon" href="Home-Images/langermediafavicon.png" type="image/ico">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     </head>
 
@@ -24,10 +24,11 @@
     </ul>
 </nav>
 
-<main> 
-    <div id="form">
+<main class="contact-main"> 
     <h2 class="formH2">Let's connect!</h2>
-    <p></p>
+        <p class="photo-intro">If you're looking to get in touch about an open position or if you'd like to collaborate on a project, please fill out the form below.</p>
+
+    <div id="form">
     <form method="post" action="https://webdevbasics.net/scripts/demo.php">
         <label for="myFirstName">*First Name</label>
             <input type="text" name="myFName" id="myFirstName" required>
@@ -38,7 +39,7 @@
         <label for="myPhone">Phone</label>
             <input type="tel" name="myPhone" id="myPhone" maxlength="12">
         <label for="myComments">*Comments</label>
-            <textarea name="myComments" id="myComments" rows="10" cols="30" required></textarea>
+            <textarea name="myComments" id="myComments" rows="7" cols="30" required></textarea>
         <input type="submit" value="Submit">
     </form>
     </div>
