@@ -6,7 +6,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="stylesheet.css">
-        <link rel="icon" href="/Home-Images/langermediafavicon.png" type="image/ico">
+        <link rel="icon" href="Home-Images/langermediafavicon.png" type="image/ico">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     </head>
 
@@ -24,11 +24,168 @@
     </ul>
 </nav>
 
-<main> 
+<main class="design-main"> 
 
+    <section class="photo-intro">
+        <h2>Graphic Design</h2>
+        <p>Developing most of his skills on the job, Devin has proven to be a strong designer with an emphasis in storytelling. After leaving the Navy, he utilized his military benefits to pursue a degree in graphic design with Arizona State University.</p>
+    </section>
 
+    <div class="design-split">
+        <div class="design-video">
+            <div class="video-container">
+                <video controls poster="Graphic-Design/videothumbnail.jpg">
+                    <source src="Graphic-Design/GRA422-LangerDevin-P4-V1-S25.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+
+        <div class="design-gallery">
+            <div class="photo-main">
+                <div class="photo-flow">
+                    <section data-index="0"><img src="Graphic-Design/design-portfolio.jpg" alt="Graphic design project 1" class="gallery-photo"></section>
+                    <section data-index="1"><img src="Graphic-Design/design-portfolio2.jpg" alt="Graphic design project 2" class="gallery-photo"></section>
+                    <section data-index="2"><img src="Graphic-Design/design-portfolio3.jpg" alt="Graphic design project 3" class="gallery-photo"></section>
+                    <section data-index="3"><img src="Graphic-Design/design-portfolio4.jpg" alt="Graphic design project 4" class="gallery-photo"></section>
+                    <section data-index="4"><img src="Graphic-Design/design-portfolio5.jpg" alt="Graphic design project 5" class="gallery-photo"></section>
+                    <section data-index="5"><img src="Graphic-Design/design-portfolio6.jpg" alt="Graphic design project 6" class="gallery-photo"></section>
+                </div>
+            </div>
+
+            <div class="photo-film-strip vertical" aria-label="Graphic design thumbnail strip">
+                <div class="photo-thumbnails vertical">
+                    <button class="thumbnail-btn active" type="button" data-index="0"><img src="Graphic-Design/design-portfolio.jpg" alt="Thumbnail for graphic design project 1"></button>
+                    <button class="thumbnail-btn" type="button" data-index="1"><img src="Graphic-Design/design-portfolio2.jpg" alt="Thumbnail for graphic design project 2"></button>
+                    <button class="thumbnail-btn" type="button" data-index="2"><img src="Graphic-Design/design-portfolio3.jpg" alt="Thumbnail for graphic design project 3"></button>
+                    <button class="thumbnail-btn" type="button" data-index="3"><img src="Graphic-Design/design-portfolio4.jpg" alt="Thumbnail for graphic design project 4"></button>
+                    <button class="thumbnail-btn" type="button" data-index="4"><img src="Graphic-Design/design-portfolio5.jpg" alt="Thumbnail for graphic design project 5"></button>
+                    <button class="thumbnail-btn" type="button" data-index="5"><img src="Graphic-Design/design-portfolio6.jpg" alt="Thumbnail for graphic design project 6"></button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </main>
+
+<div class="photo-lightbox" id="photo-lightbox" hidden>
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close expanded image">&times;</button>
+    <img src="" alt="Expanded design image" id="lightbox-image">
+</div>
+
+<script>
+    const gallery = document.querySelector('.photo-main');
+    const thumbnailButtons = document.querySelectorAll('.thumbnail-btn');
+    const lightbox = document.getElementById('photo-lightbox');
+    const lightboxImage = document.getElementById('lightbox-image');
+    const closeButton = document.getElementById('lightbox-close');
+    const galleryPhotos = document.querySelectorAll('.gallery-photo');
+    const gallerySections = document.querySelectorAll('.photo-flow > section');
+
+    const setActiveThumbnail = (index) => {
+        thumbnailButtons.forEach((button) => {
+            button.classList.toggle('active', Number(button.dataset.index) === index);
+        });
+    };
+
+    let activeSectionIndex = 0;
+
+    const updateActiveThumbnailFromScroll = (entries) => {
+        const visibleEntries = entries
+            .filter((entry) => entry.isIntersecting)
+            .sort((first, second) => second.intersectionRatio - first.intersectionRatio);
+
+        if (!visibleEntries.length) return;
+
+        const sectionIndex = Number(visibleEntries[0].target.dataset.index);
+        if (sectionIndex !== activeSectionIndex) {
+            activeSectionIndex = sectionIndex;
+            setActiveThumbnail(sectionIndex);
+        }
+    };
+
+    const scrollToImage = (index) => {
+        const targetSection = gallerySections[index];
+        if (targetSection) {
+            targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            setActiveThumbnail(index);
+        }
+    };
+
+    if (gallery) {
+        let isDragging = false;
+        let dragStartY = 0;
+        let dragStartScroll = 0;
+
+        const scrollObserver = new IntersectionObserver(updateActiveThumbnailFromScroll, {
+            root: gallery,
+            threshold: [0.45, 0.6, 0.75],
+        });
+
+        gallerySections.forEach((section) => scrollObserver.observe(section));
+
+        gallery.addEventListener('mousedown', (event) => {
+            isDragging = true;
+            dragStartY = event.clientY;
+            dragStartScroll = gallery.scrollTop;
+            gallery.classList.add('dragging');
+            gallery.style.userSelect = 'none';
+        });
+
+        window.addEventListener('mousemove', (event) => {
+            if (!isDragging) return;
+            const delta = event.clientY - dragStartY;
+            gallery.scrollTop = dragStartScroll - delta;
+            event.preventDefault();
+        });
+
+        window.addEventListener('mouseup', () => {
+            if (!isDragging) return;
+            isDragging = false;
+            gallery.classList.remove('dragging');
+            gallery.style.userSelect = '';
+        });
+
+        gallery.addEventListener('mouseleave', () => {
+            if (!isDragging) return;
+            isDragging = false;
+            gallery.classList.remove('dragging');
+            gallery.style.userSelect = '';
+        });
+    }
+
+    galleryPhotos.forEach((photo) => {
+        photo.addEventListener('click', () => {
+            lightboxImage.src = photo.src;
+            lightbox.hidden = false;
+            document.body.classList.add('lightbox-open');
+        });
+    });
+
+    thumbnailButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            scrollToImage(Number(button.dataset.index));
+        });
+    });
+
+    const closeLightbox = () => {
+        lightbox.hidden = true;
+        document.body.classList.remove('lightbox-open');
+    };
+
+    closeButton.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (event) => {
+        if (event.target === lightbox) {
+            closeLightbox();
+        }
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && !lightbox.hidden) {
+            closeLightbox();
+        }
+    });
+</script>
 
 <footer>
     <nav class="footernav">
