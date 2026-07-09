@@ -595,7 +595,7 @@ body.lightbox-open { overflow: hidden; }
     .about-text, .about-table, .about-image { width: 100%; }
     .about-text { padding-right: 0; } }
 
-@media (max-width: 768px) {
+@media (max-width: 1100px) {
     header { text-align: center; }
 
     #site-logo {
@@ -645,8 +645,32 @@ body.lightbox-open { overflow: hidden; }
         flex: 1 1 260px;
     }
 
+    .tab.is-open {
+        flex: 1 1 260px;
+    }
+
+    .tab.is-open .tab-label {
+        opacity: 0;
+    }
+
+    .tab.is-open .tab-content {
+        opacity: 1;
+    }
+
     .tab-carousel:has(.tab:not(:first-child):hover) .tab:first-child {
         flex: 0 0 64px;
+    }
+
+    .tab-carousel:has(.tab.is-open) .tab:first-child {
+        flex: 0 0 64px;
+    }
+
+    .tab-carousel:has(.tab.is-open) .tab:first-child .tab-label {
+        opacity: 1;
+    }
+
+    .tab-carousel:has(.tab.is-open) .tab:first-child .tab-content {
+        opacity: 0;
     }
 
     .tab-label {
@@ -742,9 +766,14 @@ body.lightbox-open { overflow: hidden; }
         max-width: 100%;
     }
 
+    .design-split { display: block; }
+
     .design-gallery {
         height: auto;
         max-height: none;
+    }
+    .video-container { width: 100vw;
+                    margin-bottom: 1rem;
     }
 
     .video-container video,
@@ -795,6 +824,177 @@ body.lightbox-open { overflow: hidden; }
         padding: 0.5rem;
         margin-bottom: 1rem;
         margin-top: -2rem;
+    }
+}
+
+@media (min-width: 2600px) {
+    body {
+        font-size: 1.1rem;
+    }
+
+    main {
+        padding-left: 4rem;
+        padding-right: 4rem;
+    }
+
+    #wrapper {
+        margin: 1.5% auto;
+        width: min(90%, 3200px);
+    }
+
+    #site-logo {
+        max-width: 18vw;
+    }
+
+    nav {
+        font-size: 1rem;
+    }
+
+    nav ul {
+        font-size: 1.1rem;
+        letter-spacing: 0.24rem;
+    }
+
+    h1 {
+        font-size: 3rem;
+    }
+
+    h2,
+    .tableH2,
+    .formH2,
+    .photo-intro h2,
+    .about-text h2 {
+        font-size: 2.4rem;
+    }
+
+    .about-text,
+    .photo-intro,
+    #form,
+    footer {
+        font-size: 1rem;
+    }
+
+    .about-hero {
+        grid-template-columns: minmax(260px, 1.2fr) minmax(520px, 1fr) minmax(320px, 1fr);
+        gap: 3rem;
+        padding: 2.5rem;
+    }
+
+    .about-text {
+        position: relative;
+        z-index: 2;
+    }
+
+    .about-text p {
+        font-size: 1.5rem;
+        line-height: 1.9;
+    }
+
+    .about-image {
+        position: relative;
+        z-index: 1;
+    }
+
+    .about-image img {
+        height: 62vh;
+        max-height: 70vh;
+    }
+
+    .about-table table {
+        height: 58vh;
+    }
+
+    .design-main,
+    .photo-gallery-area,
+    .contact-main {
+        max-width: 2800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .design-split {
+        grid-template-columns: minmax(520px, 1fr) minmax(520px, 1fr);
+        gap: 2.5rem;
+    }
+
+    .design-gallery {
+        height: 68vh;
+        max-height: 72vh;
+    }
+
+    .design-gallery .photo-film-strip.vertical {
+        max-height: 72vh;
+    }
+
+    .design-gallery .photo-film-strip.vertical .thumbnail-btn img {
+        height: 5vh;
+    }
+
+    .video-container video {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .photo-flow {
+        gap: 1.75rem;
+    }
+
+    main img {
+        height: 48vh;
+    }
+
+    .photo-lightbox {
+        padding: 3rem;
+    }
+
+    .photo-lightbox img {
+        max-width: 90%;
+        max-height: 88vh;
+    }
+
+    .tab-carousel {
+        height: 72vh;
+        margin: 2.5rem 0;
+    }
+
+    .tab {
+        flex: 0 0 100px;
+    }
+
+    .tab-label {
+        font-size: 1.1rem;
+        letter-spacing: 0.24rem;
+    }
+
+    .tab-content {
+        padding: 2.25rem;
+    }
+
+    #form {
+        width: min(100%, 1100px);
+        padding: 3rem;
+    }
+
+    form {
+        width: min(100%, 800px);
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea,
+    input[type="tel"] {
+        font-size: 1.05rem;
+    }
+
+    footer {
+        width: 90%;
+        font-size: 1rem;
+    }
+
+    footer ul,
+    footer .footernav ul {
+        gap: 6rem;
+        padding: 2.5rem;
     }
 }
 
