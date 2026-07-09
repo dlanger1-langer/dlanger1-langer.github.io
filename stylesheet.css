@@ -628,6 +628,38 @@ body.lightbox-open { overflow: hidden; }
             / 100%;
     }
 
+    .tab-carousel {
+        flex-direction: column;
+        height: auto;
+        min-height: 70vh;
+        margin: 1rem 0;
+    }
+
+    .tab {
+        flex: 0 0 64px;
+        width: 100%;
+    }
+
+    .tab:hover,
+    .tab:first-child {
+        flex: 1 1 260px;
+    }
+
+    .tab-carousel:has(.tab:not(:first-child):hover) .tab:first-child {
+        flex: 0 0 64px;
+    }
+
+    .tab-label {
+        writing-mode: horizontal-tb;
+        transform: none;
+        font-size: 0.9rem;
+        letter-spacing: 0.15rem;
+    }
+
+    .tab-content {
+        padding: 1rem;
+    }
+
     .contact-main {
         width: 100%;
         padding: 0 0.75rem 1rem;
