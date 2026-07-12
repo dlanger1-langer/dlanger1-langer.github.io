@@ -39,7 +39,6 @@
         <section data-index="2"><img src="Photo-Gallery/200801-N-LI768-1020.jpg" alt="Photography image 3" class="gallery-photo" loading="lazy"></section>
         <section data-index="3"><img src="Photo-Gallery/200803-N-LI768-1004.jpg" alt="Photography image 4" class="gallery-photo" loading="lazy"></section>
         <section data-index="4"><img src="Photo-Gallery/200828-N-LI768-2386.jpg" alt="Photography image 5" class="gallery-photo" loading="lazy"></section>
-        <section data-index="5"><img src="Photo-Gallery/220730-N-LI768-1104.jpg" alt="Photography image 6" class="gallery-photo" loading="lazy"></section>
         <section data-index="5"><img src="Photo-Gallery/5718438.jpg" alt="Photography image 6" class="gallery-photo" loading="lazy"></section>
         <section data-index="6"><img src="Photo-Gallery/6931704.jpg" alt="Photography image 7" class="gallery-photo" loading="lazy"></section>
         <section data-index="7"><img src="Photo-Gallery/7060285.jpg" alt="Photography image 8" class="gallery-photo" loading="lazy"></section>
@@ -123,11 +122,15 @@
     const scrollToImage = (index) => {
         const targetSection = gallerySections[index];
         if (targetSection) {
-            targetSection.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+            targetSection.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
         }
 
         thumbnailButtons.forEach((button) => {
-            button.classList.toggle('active', Number(button.dataset.index) === index);
+            const isActive = Number(button.dataset.index) === index;
+            button.classList.toggle('active', isActive);
+            if (isActive) {
+                button.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            }
         });
     };
 
